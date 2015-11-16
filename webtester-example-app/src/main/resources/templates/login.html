@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TestApp: Login</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript">
+	function validateCredentials() {
+
+		var username = document.forms["loginForm"]["username"].value;
+		var password = document.forms["loginForm"]["password"].value;
+
+		if (username != "username" || password != "123456") {
+			document.getElementById("errorMessage").style.display = 'block';
+			return false;
+		}
+
+		return true;
+
+	}
+</script>
+</head>
+<body>
+
+	<div id="errorMessage" style="display: none; background-color: #FF0000">Wrong
+		Credentials!</div>
+	<br />
+
+	<form name="loginForm" action="welcome"
+		onsubmit="return validateCredentials()" method="POST">
+		<table>
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" id="username" name="username" /></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" id="password" name="password" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" id="login" value="Login" /></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
