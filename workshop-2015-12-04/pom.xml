@@ -18,6 +18,12 @@
 		</dependency>
 		<dependency>
 			<groupId>info.novatec.testit</groupId>
+			<artifactId>webtester-support-hamcrest</artifactId>
+			<version>1.0.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.novatec.testit</groupId>
 			<artifactId>webtester-support-junit</artifactId>
 			<version>1.0.1</version>
 			<scope>test</scope>
