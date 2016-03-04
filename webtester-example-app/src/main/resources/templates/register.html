@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TestApp: Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript">
+
+        function validateFields() {
+
+            var username    = document.forms["registerForm"]["username"].value;
+            var password1   = document.forms["registerForm"]["password"].value;
+            var password2   = document.forms["registerForm"]["repeatPassword"].value;
+            var robot       = document.forms["registerForm"]["robot:yes"].checked;
+
+            if (username == "") {
+                displayError("username is required!")
+                return false;
+            }
+
+            if (password1 == "") {
+                displayError("password is required!")
+                return false;
+            }
+
+            if (password2 == "") {
+                displayError("repeat password is required!")
+                return false;
+            }
+
+            if (password1 != password2) {
+                displayError("passwords need to be equal!")
+                return false;
+            }
+
+            if (robot) {
+                displayError("no robots allowed!")
+                return false;
+            }
+
+            return true;
+
+        }
+
+        function displayError(msg) {
+            document.getElementById("errorMessage").style.display = 'block';
+            document.getElementById("errorMessage").innerHTML = msg;
+        }
+
+    </script>
+    <style>
+
+        body {
+            font-family: Verdana, Arial, sans-serif;
+            font-style: normal;
+            font-size: 14px;
+        }
+
+        .login-table {
+            border: 1px solid #666666;
+            margin:auto;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .text-field {
+            border: 1px solid #666666;
+        }
+
+        .select {
+            border: 1px solid #666666;
+        }
+
+        .button {
+            border: 1px solid #666666;
+            background-color: #CCCCCC;
+        }
+
+    </style>
+</head>
+<body>
+
+	<div id="errorMessage" style="display: none; background-color: #FF0000">no errors</div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div style="text-align: center;">
+        <form name="registerForm"
+              action="welcome"
+              method="POST"
+              onsubmit="return validateFields()">
+            <table class="login-table">
+                <tr>
+                    <td>*Username:</td>
+                    <td><input id="username" type="text" class="text-field" /></td>
+                </tr>
+                <tr>
+                    <td>*Password:</td>
+                    <td><input id="password" type="password" class="text-field" /></td>
+                </tr>
+                <tr>
+                    <td>*Repeat Password:</td>
+                    <td><input id="repeatPassword" type="password" class="text-field" /></td>
+                </tr>
+
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <select id="gender"class="select" >
+                            <option value=""></option>
+                            <option value="f">female</option>
+                            <option value="m">male</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Newsletter:</td>
+                    <td><input id="newsletter" type="checkbox" /></td>
+                </tr>
+                <tr>
+                    <td>Are you a robot?</td>
+                    <td>
+                        <input id="robot:yes" type="radio" name="robot" value="yes" checked="checked" />
+                        <label for="robot:yes">Yes</label>
+                        <input id="robot:no" type="radio" name="robot" value="no" />
+                        <label for="robot:no">No</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><input type="submit" id="register" value="Register" /></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

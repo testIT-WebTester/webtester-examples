@@ -1,46 +1,81 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>TestApp: Login</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript">
-	function validateCredentials() {
+	<title>TestApp: Login</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript">
+		function validateCredentials() {
 
-		var username = document.forms["loginForm"]["username"].value;
-		var password = document.forms["loginForm"]["password"].value;
+			var username = document.forms["loginForm"]["username"].value;
+			var password = document.forms["loginForm"]["password"].value;
 
-		if (username != "username" || password != "123456") {
-			document.getElementById("errorMessage").style.display = 'block';
-			return false;
+			if (username != "username" || password != "123456") {
+				document.getElementById("errorMessage").style.display = 'block';
+				return false;
+			}
+
+			return true;
+
+		}
+	</script>
+	<style>
+
+		body {
+			font-family: Verdana, Arial, sans-serif;
+			font-style: normal;
+			font-size: 14px;
 		}
 
-		return true;
+		.login-table {
+			border: 1px solid #666666;
+			margin:auto;
+			padding: 10px;
+            text-align: right;
+		}
 
-	}
-</script>
+		.text-field {
+			border: 1px solid #666666;
+		}
+
+        .button {
+            border: 1px solid #666666;
+            background-color: #CCCCCC;
+        }
+
+	</style>
 </head>
 <body>
 
-	<div id="errorMessage" style="display: none; background-color: #FF0000">Wrong
-		Credentials!</div>
+	<div id="errorMessage" style="display: none; background-color: #FF0000">Wrong Credentials!</div>
 	<br />
+    <br />
+    <br />
+    <br />
+    <br />
 
-	<form name="loginForm" action="welcome"
-		onsubmit="return validateCredentials()" method="POST">
-		<table>
-			<tr>
-				<td>Username:</td>
-				<td><input type="text" id="username" name="username" /></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" id="password" name="password" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" id="login" value="Login" /></td>
-			</tr>
-		</table>
-	</form>
+	<div style="text-align: center;">
+		<form name="loginForm"
+			  action="welcome"
+			  method="POST"
+			  onsubmit="return validateCredentials()">
+            <table class="login-table">
+                <tr>
+                    <td>Username:</td>
+                    <td><input id="username" type="text" name="username" class="text-field" /></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input id="password" type="password" name="password" class="text-field" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align: right">
+                        <input id="login" type="submit" value="Login" class="button" />
+                    </td>
+                </tr>
+            </table>
+		</form>
+	</div>
 
 </body>
 </html>

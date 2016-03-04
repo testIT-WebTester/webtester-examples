@@ -6,7 +6,7 @@
 
 	<groupId>info.novatec.testit</groupId>
 	<artifactId>webtester-examples</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<name>testIT | WebTester - Examples</name>
 
 	<properties>
@@ -18,23 +18,23 @@
 		<dependency>
 			<groupId>info.novatec.testit</groupId>
 			<artifactId>webtester-example-app</artifactId>
-			<version>1.0.0</version>
+			<version>1.1.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>info.novatec.testit</groupId>
 			<artifactId>webtester-support-firefox</artifactId>
-			<version>1.0.0</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>info.novatec.testit</groupId>
 			<artifactId>webtester-support-ie</artifactId>
-			<version>1.0.0</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>info.novatec.testit</groupId>
 			<artifactId>webtester-support-junit</artifactId>
-			<version>1.0.0</version>
+			<version>1.1.0</version>
 		</dependency>
 
 		<dependency>
