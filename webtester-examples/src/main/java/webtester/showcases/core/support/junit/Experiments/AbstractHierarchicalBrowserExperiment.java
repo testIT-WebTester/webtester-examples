@@ -1,4 +1,4 @@
-package webtester.showcases.core.support.junit;
+package webtester.showcases.core.support.junit.Experiments;
 
 import javax.annotation.Resource;
 

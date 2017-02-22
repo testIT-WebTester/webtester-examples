@@ -1,4 +1,4 @@
-package webtester.showcases.core;
+package webtester.showcases.core.support.junit;
 
 import static info.novatec.testit.webtester.utils.Identifications.name;
 import static org.hamcrest.MatcherAssert.assertThat;

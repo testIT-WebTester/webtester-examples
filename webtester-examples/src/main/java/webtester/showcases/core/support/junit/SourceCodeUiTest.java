@@ -1,8 +1,7 @@
-package webtester.showcases.core;
+package webtester.showcases.core.support.junit;
 
 import javax.annotation.Resource;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExternalResource;
@@ -19,11 +18,10 @@ import webtester.showcases.core.rules.CoreSampleApplicationResource;
 
 
 @RunWith ( WebTesterJUnitRunner.class )
-public class BrowserNavigationUiTest {
+public class SourceCodeUiTest {
 
-    /* The navigation API of Selenium is encapsulated inside the class {@link
-     * Navigation} accessible with webDriver.navigate(). We included the most
-     * common navigation operations as part of the {@link Browser} API. */
+    /* If you want to save the current HTML source code of a displayed page, you
+     * can do so by calling the {@link Browser} saveSourceCode(...) methods. */
 
     @Rule
     public ExternalResource demoApplication = new CoreSampleApplicationResource();
@@ -33,22 +31,21 @@ public class BrowserNavigationUiTest {
     @CreateUsing ( FirefoxFactory.class )
     private Browser browser;
 
-    @Before
-    public void initStartPage () {
-        browser.create(LoginPage.class).loginWithValidUser();
-    }
-
     @Test
-    public void navigateBackAndForward () throws InterruptedException {
-        waitShortly();
-        browser.navigateBackwards();
-        waitShortly();
-        browser.navigateForwards();
-        waitShortly();
+    public void saveSourceCode () {
+
+        // default folder and naming
+        browser.saveSourceCode();
+
+        changePageContent();
+
+        // custom folder and default naming
+        browser.saveSourceCode("testartifacts/" + getClass().getSimpleName());
+
     }
 
-    private void waitShortly () throws InterruptedException {
-        Thread.sleep(1000);
+    private void changePageContent () {
+        browser.create(LoginPage.class).loginWithValidUser();
     }
 
 }
