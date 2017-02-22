@@ -1,4 +1,4 @@
-package webtester.showcases.core.support.junit;
+package webtester.showcases.core.support.junit.experiments;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
