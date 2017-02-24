@@ -1,18 +1,18 @@
-package webtester.showcases.core.support.junit;
-
-import javax.annotation.Resource;
+package webtester.showcases.core.support.testng.experiments;
 
 import info.novatec.testit.webtester.api.browser.Browser;
 import info.novatec.testit.webtester.browser.factories.FirefoxFactory;
-import info.novatec.testit.webtester.junit.annotations.CreateUsing;
-import info.novatec.testit.webtester.junit.annotations.EntryPoint;
+import info.novatec.testit.webtester.testng.annotations.CreateUsing;
+import info.novatec.testit.webtester.testng.annotations.EntryPoint;
+
+import javax.annotation.Resource;
 
 
 public abstract class AbstractHierarchicalBrowserExperiment {
 
     @Resource
-    @EntryPoint ( "http://www.wikipedia.com" )
-    @CreateUsing ( FirefoxFactory.class )
+    @EntryPoint( "http://www.wikipedia.com" )
+    @CreateUsing( FirefoxFactory.class )
     protected static Browser preInitializedBrowser = new FirefoxFactory().createBrowser();
 
     @Resource

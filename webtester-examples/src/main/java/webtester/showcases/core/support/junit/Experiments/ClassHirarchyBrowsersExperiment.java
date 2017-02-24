@@ -1,4 +1,4 @@
-package webtester.showcases.core.support.junit;
+package webtester.showcases.core.support.junit.Experiments;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

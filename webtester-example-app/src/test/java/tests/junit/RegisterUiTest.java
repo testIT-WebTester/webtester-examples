@@ -1,4 +1,4 @@
-package tests;
+package tests.junit;
 
 import static info.novatec.testit.webtester.support.assertj.WebTesterAssertions.assertThat;
 

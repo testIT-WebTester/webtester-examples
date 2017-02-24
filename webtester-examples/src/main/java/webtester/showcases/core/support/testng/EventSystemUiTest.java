@@ -1,15 +1,4 @@
-package webtester.showcases.core;
-
-import javax.annotation.Resource;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExternalResource;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package webtester.showcases.core.support.testng;
 
 import info.novatec.testit.webtester.api.browser.Browser;
 import info.novatec.testit.webtester.api.events.Event;
@@ -18,15 +7,24 @@ import info.novatec.testit.webtester.browser.factories.FirefoxFactory;
 import info.novatec.testit.webtester.eventsystem.EventSystem;
 import info.novatec.testit.webtester.eventsystem.events.pageobject.ClickedEvent;
 import info.novatec.testit.webtester.eventsystem.events.pageobject.TextSetEvent;
-import info.novatec.testit.webtester.junit.annotations.CreateUsing;
-import info.novatec.testit.webtester.junit.annotations.EntryPoint;
-import info.novatec.testit.webtester.junit.runner.WebTesterJUnitRunner;
+
+import info.novatec.testit.webtester.testng.annotations.CreateUsing;
+import info.novatec.testit.webtester.testng.annotations.EntryPoint;
+import info.novatec.testit.webtester.testng.listener.WebTesterTestNGListener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.testng.annotations.*;
+
+import samples.core.CoreSampleApplication;
 import utils.EntryPoints;
 import webtester.showcases.core.pageobjects.RandomInteractionsPage;
-import webtester.showcases.core.rules.CoreSampleApplicationResource;
+
+import javax.annotation.Resource;
 
 
-@RunWith ( WebTesterJUnitRunner.class )
+@Listeners(WebTesterTestNGListener.class)
 public class EventSystemUiTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventSystemUiTest.class);
@@ -42,15 +40,25 @@ public class EventSystemUiTest {
      * WebTesterConfiguration} by setting its fully qualified class name in the
      * 'testit-webtester.properties' file. */
 
-    @Rule
-    public ExternalResource demoApplication = new CoreSampleApplicationResource();
 
     @Resource
-    @EntryPoint ( EntryPoints.RANDOM )
-    @CreateUsing ( FirefoxFactory.class )
+    @EntryPoint( EntryPoints.RANDOM )
+    @CreateUsing( FirefoxFactory.class )
     private Browser browser;
 
-    @Before
+    private final CoreSampleApplication application = new CoreSampleApplication();
+
+    @BeforeClass
+    public void startApplication() {
+        application.start();
+    }
+
+    @AfterClass
+    public void stopApplication() {
+        application.stop();
+    }
+
+    @BeforeMethod
     public void registerEventListeners () {
         EventSystem.clearListeners();
         EventSystem.registerListener(new EventListener() {
@@ -75,7 +83,7 @@ public class EventSystemUiTest {
         });
     }
 
-    @After
+    @AfterMethod
     public void clearEventListeners () {
         EventSystem.clearListeners();
     }

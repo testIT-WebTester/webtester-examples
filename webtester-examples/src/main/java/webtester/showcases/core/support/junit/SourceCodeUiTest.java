@@ -1,4 +1,4 @@
-package webtester.showcases.core;
+package webtester.showcases.core.support.junit;
 
 import javax.annotation.Resource;
 
@@ -13,42 +13,39 @@ import info.novatec.testit.webtester.junit.annotations.CreateUsing;
 import info.novatec.testit.webtester.junit.annotations.EntryPoint;
 import info.novatec.testit.webtester.junit.runner.WebTesterJUnitRunner;
 import utils.EntryPoints;
-import webtester.showcases.core.pageobjects.RandomInteractionsPage;
+import webtester.showcases.core.pageobjects.LoginPage;
 import webtester.showcases.core.rules.CoreSampleApplicationResource;
 
 
 @RunWith ( WebTesterJUnitRunner.class )
-public class ScreenshotsUiTest {
+public class SourceCodeUiTest {
 
-    /* If you want to save a screenshot of the currently displayed page, you can
-     * do so by calling the {@link Browser} <code>takeScreenshot(...)</code>
-     * methods. */
+    /* If you want to save the current HTML source code of a displayed page, you
+     * can do so by calling the {@link Browser} saveSourceCode(...) methods. */
 
     @Rule
     public ExternalResource demoApplication = new CoreSampleApplicationResource();
 
     @Resource
-    @EntryPoint ( EntryPoints.RANDOM )
+    @EntryPoint ( EntryPoints.LOGIN )
     @CreateUsing ( FirefoxFactory.class )
     private Browser browser;
 
     @Test
-    public void takeScrenshot () {
+    public void saveSourceCode () {
 
-        // default folder an naming
-        browser.takeScreenshot();
+        // default folder and naming
+        browser.saveSourceCode();
 
         changePageContent();
 
         // custom folder and default naming
-        browser.takeScreenshot("testartifacts/" + getClass().getSimpleName());
+        browser.saveSourceCode("testartifacts/" + getClass().getSimpleName());
 
     }
 
     private void changePageContent () {
-        RandomInteractionsPage page = browser.create(RandomInteractionsPage.class);
-        for (int i = 0; i < 3; i ++ ) {
-            page.clickRandomButton().setTextOfRandomTextField();
-        }
+        browser.create(LoginPage.class).loginWithValidUser();
     }
+
 }
